@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+<div class = "add_item_form">
+    <h2>Add a new note</h2>
+    <form action="/note/add" method="post" >
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+            <button type="submit">Add</button>
+    </form>
+</div>
+<div class = "delet_ById_form">
+    <h2>Delete the note</h2>
+    <form action="/note/delete" method="post" >
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+<div class="list_container">
+    <h2>Notes List</h2>
+    <div>
+        <ol>
+            <li  th:each="note : ${notes}">
+                <table>
+                    <tr>
+                        <td>Id: </td>
+                        <td th:text = ${note.id}></td>
+                    </tr>
+                    <tr>
+                        <td>Title: </td>
+                        <td th:text = ${note.title}></td>
+                    </tr>
+                    <tr>
+                        <td>Content: </td>
+                        <td th:text = ${note.content}></td>
+                    </tr>
+                </table>
+                <button>
+                    <a  th:href="@{/note/edit(id=${note.id})}">Edit the note</a>
+                </button>
+
+            </li>
+        </ol>
+    </div>
+</div>
+</body>
+</html>
